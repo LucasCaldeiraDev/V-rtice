@@ -25,14 +25,6 @@ export function Autor() {
           <a href={`mailto:${autor.email}`} className="btn-obra">
             Falar comigo
           </a>
-          <a
-            href={autor.github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center border-2 border-papel/40 px-6 py-3 font-display text-lg font-bold uppercase tracking-wide transition-colors hover:border-obra hover:text-obra"
-          >
-            GitHub
-          </a>
         </div>
       </div>
     </section>

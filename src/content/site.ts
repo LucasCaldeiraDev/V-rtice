@@ -113,8 +113,6 @@ export const autor = {
   texto:
     'Esta página é um estudo de scroll-storytelling: React, TypeScript, GSAP ScrollTrigger, um SVG autoral que o scroll transforma em prédio e fotografia de obra gerada por IA com direção de consistência entre as etapas — tudo em menos de 500 kB de imagens.',
   email: 'fluxorahub.crm@gmail.com',
-  // TODO: trocar pelo perfil real do GitHub
-  github: 'https://github.com/',
 }
 
 export const avisoFicticio =
