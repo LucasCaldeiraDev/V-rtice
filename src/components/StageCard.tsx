@@ -1,5 +1,28 @@
 import type { Stage } from '../content/site'
 
+/**
+ * Variante compacta usada como legenda sobre o vídeo: pequena, ancorada no
+ * canto e translúcida, para nunca cobrir a construção em cena.
+ */
+export function StageCaption({ stage }: { stage: Stage }) {
+  return (
+    <article className="border-2 border-grafite bg-papel/90 p-4 backdrop-blur-sm md:p-5">
+      <p className="cota">
+        Etapa {stage.numero} — {stage.nome}
+      </p>
+      <h3 className="display mt-1.5 text-xl md:text-2xl">{stage.titulo}</h3>
+      <p className="mt-1.5 text-[0.8125rem] leading-snug text-grafite/80">{stage.texto}</p>
+      <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-dashed border-projeto/40 pt-2 font-mono text-[0.625rem] tracking-[0.08em] uppercase">
+        {stage.dados.map((d) => (
+          <span key={d.label} className="text-grafite/60">
+            {d.label} <span className="font-medium normal-case text-projeto">{d.value}</span>
+          </span>
+        ))}
+      </p>
+    </article>
+  )
+}
+
 export function StageCard({ stage, withImage = false }: { stage: Stage; withImage?: boolean }) {
   return (
     <article className="border-2 border-grafite bg-papel">

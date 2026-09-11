@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap } from '../lib/gsap'
 import { stages } from '../content/site'
-import { StageCard } from '../components/StageCard'
+import { StageCard, StageCaption } from '../components/StageCard'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
 // Fronteiras das etapas no progresso do pin (0–1), usadas pelo HUD e pelos cards.
@@ -152,9 +152,11 @@ function ObraAnimated() {
     >
       {/* timelapse da obra: o scroll controla o tempo do vídeo */}
       <div aria-hidden="true" className="absolute inset-0">
+        {/* object-top: em telas mais largas que 16:9 o corte vertical come a
+            rua na base do quadro, nunca o topo da construção */}
         <video
           ref={videoRef}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
           src={isMobile ? '/videos/vertice-obra-960.mp4' : '/videos/vertice-obra-1920.mp4'}
           poster="/images/vertice-terreno-poster.webp"
           muted
@@ -167,20 +169,17 @@ function ObraAnimated() {
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-grafite/50 to-transparent" />
       </div>
 
-      {/* blocos de texto por etapa */}
-      <div className="absolute inset-x-4 bottom-16 z-10 md:inset-x-auto md:right-8 md:top-1/2 md:w-[360px] md:-translate-y-1/2 lg:right-16">
+      {/* legendas por etapa — canto inferior esquerdo, fora da construção */}
+      <div className="absolute inset-x-4 bottom-16 z-10 md:inset-x-auto md:bottom-20 md:left-8 md:w-[380px] lg:left-14">
         <div className="relative">
           {stages.map((s) => (
-            <div
-              key={s.id}
-              className="stage-block absolute inset-x-0 bottom-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
-            >
-              <StageCard stage={s} />
+            <div key={s.id} className="stage-block absolute inset-x-0 bottom-0">
+              <StageCaption stage={s} />
             </div>
           ))}
-          {/* espaçador invisível para reservar altura no mobile */}
+          {/* espaçador invisível para reservar altura do bloco mais alto */}
           <div className="invisible" aria-hidden="true">
-            <StageCard stage={stages[1]} />
+            <StageCaption stage={stages[1]} />
           </div>
         </div>
       </div>
